@@ -6,9 +6,7 @@ const deleteBtn = document.getElementById("delete-btn");
 const tabBtn = document.getElementById("tab-btn");
 const ulEl = document.getElementById("ul-el");
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
-const tabs = [
-    {url: "https://www.linkedin.com/in/per-harald-borgen/"}
-];
+
 
 if(leadsFromLocalStorage) {
     myLeads = leadsFromLocalStorage;
@@ -47,9 +45,16 @@ inputBtn.addEventListener("click", function() {
 })
 
 tabBtn.addEventListener("click", function () {
-    myLeads.push(tabs[0].url);
-    localStorage.setItem("myLeads", JSON.stringify(myLeads));
-    render(myLeads);
+        chrome.tabs.query({active: true, currentWindow: ture}, function(tabs){
+            console.log(tabs)
+            myLeads.push(tabs[0].url);
+            localStorage.setItem("myLeads", JSON.stringify(myLeads));
+            render(myLeads);
+
+
+        })
+
+    
 })
 
 
