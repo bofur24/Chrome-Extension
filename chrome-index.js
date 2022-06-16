@@ -6,6 +6,14 @@ const ulEl = document.getElementById("ul-el");
 
 let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
 
+if(leadsFromLocalStorage) {
+    myLeads = leadsFromLocalStorage;
+    renderLeads();
+}
+
+
+
+
 console.log(leadsFromLocalStorage);
 
 
